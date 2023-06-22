@@ -21,15 +21,21 @@ class Produto:
         return self.preco
 
     def set_preco(self, novo_preco):
-        if novo_preco.isnumeric():
-            self.preco = float(novo_preco)
+        try:
+            novo_preco = float(novo_preco)
+            self.preco = novo_preco
+        except:
+            print("Valor inválido")
 
     def get_quantidade(self):
         return self.quantidade
 
     def set_quantidade(self, nova_quantidade):
-        if novo_quantidade.isnumeric():
-            self.quantidade = int(nova_quantidade)
+        try:
+            nova_quantidade = int(nova_quantidade)
+            self.quantidade = nova_quantidade
+        except:
+            print("Valor inválido")
 
     def exibir_informacoes(self):
         print(f"Código: {self.codigo}")

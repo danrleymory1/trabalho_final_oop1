@@ -3,35 +3,40 @@ from Compra import NotaFiscal
 from Produto import Produto
 
 
-class BancoDados:
+class Dados:
     def __init__(self):
         self.produtos = []
         self.clientes = []
         self.vendas = []
 
-    def cadastrar_produto(self):
-        nome = input("Digite o nome do produto: ")
-        preco = float(input("Digite o preço do produto: "))
-        quantidade = int(input("Digite a quantidade em estoque: "))
-        produto = Produto(nome, preco, quantidade)
-        self.produtos.append(produto)
-        print("Produto cadastrado com sucesso.")
+    def inserir_produto(self, produto):
+        for p in self.produtos:
+            if p.get_nome().upper() == produto.get_nome().upper():
+                return False
 
-    def adicionar_produto(self, produto):
         self.produtos.append(produto)
+        return True
+
+    def inserir_produto(self):
+        produto = Produto.criar()
+
+        res = self.inserir_produto(produto)
+
+        if res:
+            print("Produto cadastrado com sucesso.")
+        else:
+            print("Produto já cadastrado no sistema.")
 
     def alterar_produto(self):
         codigo = int(input("Digite o código do produto que deseja alterar: "))
 
         for produto in self.produtos:
             if produto.codigo == codigo:
-                nome = input("Digite o novo nome do produto: ")
-                preco = float(input("Digite o novo preço do produto: "))
-                quantidade = int(input("Digite a nova quantidade do produto: "))
+                novo_produto = Produto.criar(alterar=True)
 
-                produto.nome = nome
-                produto.preco = preco
-                produto.quantidade = quantidade
+                produto.set_nome(novo_produto.get_nome())
+                produto.set_preco(novo_produto.get_preco())
+                produto.set_quantidade(novo_produto.get_quantidade())
 
                 print("Produto alterado com sucesso.")
                 return
@@ -39,13 +44,20 @@ class BancoDados:
         print("Produto não encontrado.")
 
     def adicionar_ao_estoque(self):
-        codigo = int(input("Digite o código do produto que deseja adicionar ao estoque: "))
+        codigo = int(
+            input("Digite o código do produto que deseja adicionar ao estoque: ")
+        )
 
         for produto in self.produtos:
             if produto.codigo == codigo:
-                quantidade = int(input("Digite a quantidade a ser adicionada ao estoque: "))
+                quantidade = input("Digite a quantidade a ser adicionada ao estoque: ")
 
-                produto.quantidade += quantidade
+                while not quantidade.isnumeric():
+                    quantidade = input(
+                        "Valor inválido. Digite novamente a quantidade a ser adicionada ao estoque: "
+                    )
+
+                produto.set_quantidade(produto.get_quantidade() + quantidade)
 
                 print("Produto adicionado ao estoque com sucesso.")
                 return
@@ -70,7 +82,9 @@ class BancoDados:
         print("Produto não encontrado.")
 
     def cadastrar_cliente(self):
-        tipo = input("Digite o tipo de cliente (1 - Pessoa Física, 2 - Pessoa Jurídica): ")
+        tipo = input(
+            "Digite o tipo de cliente (1 - Pessoa Física, 2 - Pessoa Jurídica): "
+        )
 
         if tipo == "1":
             cpf = str(input("Digite o CPF do cliente: "))
@@ -158,7 +172,9 @@ class BancoDados:
     def exibir_funcionarios(self):
         print("==== Funcionários ====")
         for funcionario in self.clientes:
-            print(f"Nome: {funcionario.nome} - CPF: {funcionario.cpf or 'Não informado'}")
+            print(
+                f"Nome: {funcionario.nome} - CPF: {funcionario.cpf or 'Não informado'}"
+            )
         print("===================")
 
     def alterar_funcionario(self):
@@ -220,8 +236,12 @@ class BancoDados:
         elif isinstance(cliente, Funcionario):
             valor_total = cliente.aplicar_desconto(valor_total)
 
-        nota_fiscal = NotaFiscal("CPF" if isinstance(cliente, PessoaFisica or Funcionario) else "CNPJ",
-                                 cliente, produtos_venda, valor_total)
+        nota_fiscal = NotaFiscal(
+            "CPF" if isinstance(cliente, PessoaFisica or Funcionario) else "CNPJ",
+            cliente,
+            produtos_venda,
+            valor_total,
+        )
 
         self.vendas.append(nota_fiscal)
 

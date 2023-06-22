@@ -72,7 +72,7 @@ class Menu:
             opcao = input("Digite a opção desejada: ")
 
             if opcao == "1":
-                self.banco_dados.cadastrar_produto()
+                self.banco_dados.inserir_produto()
             elif opcao == "2":
                 self.banco_dados.alterar_produto()
             elif opcao == "3":
@@ -80,7 +80,9 @@ class Menu:
             elif opcao == "4":
                 self.banco_dados.remover_produto()
             elif opcao == "5":
+                self.limpar_tela()
                 self.banco_dados.exibir_estoque()
+                input("Pressione qualquer tecla para continuar.")
             elif opcao == "0":
                 break
             else:

@@ -25,7 +25,7 @@ class Produto:
             novo_preco = float(novo_preco)
             self.preco = novo_preco
         except:
-            print("Valor inválido")
+            return False
 
     def get_quantidade(self):
         return self.quantidade
@@ -35,10 +35,36 @@ class Produto:
             nova_quantidade = int(nova_quantidade)
             self.quantidade = nova_quantidade
         except:
-            print("Valor inválido")
+            return False
 
     def exibir_informacoes(self):
         print(f"Código: {self.codigo}")
         print(f"Nome: {self.nome}")
         print(f"Preço: R$ {self.preco:.2f}")
         print(f"Quantidade: {self.quantidade}")
+
+    def criar(alterar=False):
+        produto = Produto(None, None, None)
+
+        if alterar:
+            Produto.codigo_sequencial -= 1
+
+        produto.set_nome(input("Digite o nome do produto: "))
+        while produto.get_nome() == None:
+            produto.set_nome(
+                input("Nome inválido. Digite novamente o nome do produto: ")
+            )
+
+        produto.set_preco(float(input("Digite o preço do produto: ")))
+        while produto.get_preco() == None:
+            produto.set_preco(
+                float(input("Preço inválido. Digite novamente o preço do produto: "))
+            )
+
+        produto.set_quantidade(int(input("Digite o preço do produto: ")))
+        while produto.get_quantidade() == None:
+            produto.set_quantidade(
+                int(input("Preço inválido. Digite novamente o preço do produto: "))
+            )
+
+        return produto

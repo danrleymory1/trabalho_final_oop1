@@ -10,20 +10,20 @@ Depois das correções, eu faço o diagrama, só realmente não sei se utilizei:
 Agregação, Composição, Herança e/ou polimorfismo
 
 Mas verifica aí, acredito que tem como deixar mais limpo o código kkk
-"""""
+""" ""
 # Menu Estoque Ok
 # Menu Clientes Ok
 # Menu Funcionário Ok
 # Menu Vendas Ok
 # Menu Relatório Ok
 
-from BancodeDados import BancoDados
+from Dados import Dados
 from Menu import Menu
 from Produto import Produto
 from Pessoa import PessoaFisica, PessoaJuridica, Funcionario
 
 
-banco_dados = BancoDados()
+banco_dados = Dados()
 menu = Menu(banco_dados)
 
 # Adicionar produtos iniciais

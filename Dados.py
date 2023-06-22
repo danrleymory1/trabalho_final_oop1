@@ -40,15 +40,19 @@ class Dados:
                 produto.set_preco(novo_produto.get_preco())
                 produto.set_quantidade(novo_produto.get_quantidade())
 
-                print("Produto alterado com sucesso.")
+                print("\n=================\nProduto alterado com sucesso.")
+                input("\nAperte qualquer tecla para continuar.")
                 return
 
-        print("Produto não encontrado.")
+        print("\n=================\nProduto não encontrado.")
+        input("\nAperte qualquer tecla para continuar.")
 
     def adicionar_ao_estoque(self):
-        codigo = int(
-            input("Digite o código do produto que deseja adicionar ao estoque: ")
-        )
+        codigo = input("Digite o código do produto que deseja adicionar ao estoque: ")
+        while not codigo.isnumeric():
+            codigo = input("Código inválido. Digite o código novamente")
+
+        codigo = int(codigo)
 
         for produto in self.produtos:
             if produto.codigo == codigo:
@@ -59,7 +63,7 @@ class Dados:
                         "Valor inválido. Digite novamente a quantidade a ser adicionada ao estoque: "
                     )
 
-                produto.set_quantidade(produto.get_quantidade() + quantidade)
+                produto.set_quantidade(produto.get_quantidade() + int(quantidade))
 
                 print("Produto adicionado ao estoque com sucesso.")
                 return
@@ -89,20 +93,12 @@ class Dados:
         )
 
         if tipo == "1":
-            cpf = str(input("Digite o CPF do cliente: "))
-            nome = input("Digite o nome do cliente: ")
-            endereco = input("Digite o endereço do cliente: ")
-
-            cliente = PessoaFisica(nome, cpf, endereco)
+            cliente = PessoaFisica.criar()
             self.clientes.append(cliente)
 
             print("Cliente cadastrado com sucesso.")
         elif tipo == "2":
-            cnpj = str(input("Digite o CNPJ do cliente: "))
-            nome = input("Digite o nome do cliente: ")
-            endereco = input("Digite o endereço do cliente: ")
-
-            cliente = PessoaJuridica(nome, cnpj, endereco)
+            cliente = PessoaJuridica.criar()
             self.clientes.append(cliente)
 
             print("Cliente cadastrado com sucesso.")

@@ -13,7 +13,7 @@ class Pessoa:
         if len(novo_nome) > 0:
             self.nome = novo_nome
         else:
-            print("Nome inválido. Tente novamente")
+            return False
 
     def get_endereco(self):
         return self.endereco
@@ -22,7 +22,7 @@ class Pessoa:
         if len(novo_endereco) > 0:
             self.endereco = novo_endereco
         else:
-            print("Endereço inválido. Tente novamente")
+            return False
 
 
 class PessoaFisica(Pessoa):
@@ -37,16 +37,24 @@ class PessoaFisica(Pessoa):
         if validar_cpf(novo_cpf):
             self.cpf = novo_cpf
         else:
-            print("CPF inválido. Tente novamente")
+            return False
 
-    def get_nome(self):
-        return self.nome
+    def criar():
+        pessoa = PessoaJuridica(None, None, None)
 
-    def set_nome(self, novo_nome):
-        if len(novo_nome) > 0:
-            self.nome = novo_nome
-        else:
-            print("Nome inválido. Tente novamente")
+        pessoa.set_nome(input("Digite o nome a ser cadastrado: "))
+        while pessoa.get_nome() == None or len(pessoa.get_nome()) == 0:
+            pessoa.set_nome(input("Nome inválido. Digite novamente: "))
+
+        pessoa.set_cpf(input("Digite o CPF: "))
+        while pessoa.get_cpf() == None:
+            pessoa.set_cpf(input("CPF inválido. Digite novamente o CPF: "))
+
+        pessoa.set_endereco(input("Digite o endereço: "))
+        while pessoa.get_endereco() == None or len(pessoa.get_endereco()) == 0:
+            pessoa.set_endereco(input("Endereço inválido. Digite novamente: "))
+
+        return pessoa
 
 
 class PessoaJuridica(Pessoa):
@@ -61,12 +69,29 @@ class PessoaJuridica(Pessoa):
         if validar_cnpj(novo_cnpj):
             self.cnpj = novo_cnpj
         else:
-            print("CNPJ inválido. Tente novamente")
+            return False
 
     def aplicar_desconto(self, valor_total):
         desconto = valor_total * 0.05  # 5% de desconto
         valor_com_desconto = valor_total - desconto
         return valor_com_desconto
+
+    def criar():
+        pessoa = PessoaJuridica(None, None, None)
+
+        pessoa.set_nome(input("Digite o nome a ser cadastrado: "))
+        while pessoa.get_nome() == None or len(pessoa.get_nome()) == 0:
+            pessoa.set_nome(input("Nome inválido. Digite novamente: "))
+
+        pessoa.set_cnpj(input("Digite o CNPJ: "))
+        while pessoa.get_cnpj() == None:
+            pessoa.set_cnpj(input("CNPJ inválido. Digite novamente o CNPJ: "))
+
+        pessoa.set_endereco(input("Digite o endereço: "))
+        while pessoa.get_endereco() == None or len(pessoa.get_endereco()) == 0:
+            pessoa.set_endereco(input("Endereço inválido. Digite novamente: "))
+
+        return pessoa
 
 
 class Funcionario(PessoaFisica):

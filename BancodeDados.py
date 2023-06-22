@@ -73,7 +73,7 @@ class BancoDados:
         tipo = input("Digite o tipo de cliente (1 - Pessoa Física, 2 - Pessoa Jurídica): ")
 
         if tipo == "1":
-            cpf = input("Digite o CPF do cliente: ")
+            cpf = str(input("Digite o CPF do cliente: "))
             nome = input("Digite o nome do cliente: ")
             endereco = input("Digite o endereço do cliente: ")
 
@@ -82,7 +82,7 @@ class BancoDados:
 
             print("Cliente cadastrado com sucesso.")
         elif tipo == "2":
-            cnpj = input("Digite o CNPJ do cliente: ")
+            cnpj = str(input("Digite o CNPJ do cliente: "))
             nome = input("Digite o nome do cliente: ")
             endereco = input("Digite o endereço do cliente: ")
 
@@ -106,11 +106,11 @@ class BancoDados:
         print("===================")
 
     def alterar_cliente(self):
-        cpf_cnpj = int(input("Digite o CPF/CNPJ do cliente para alterar: "))
+        cpf_cnpj = str(input("Digite o CPF/CNPJ do cliente para alterar: "))
         for cliente in self.clientes:
             if isinstance(cliente, PessoaFisica) and cliente.cpf == cpf_cnpj:
                 nome = input("Digite o novo nome do cliente: ")
-                cpf = input("Digite o novo CPF do cliente: ")
+                cpf = str(input("Digite o novo CPF do cliente: "))
                 endereco = input("Digite o novo endereço do cliente: ")
                 cliente.nome = nome
                 cliente.cpf = cpf
@@ -119,7 +119,7 @@ class BancoDados:
                 return
             elif isinstance(cliente, PessoaJuridica) and cliente.cnpj == cpf_cnpj:
                 nome = input("Digite o novo nome do cliente: ")
-                cnpj = input("Digite o novo cnpj do cliente: ")
+                cnpj = str(input("Digite o novo cnpj do cliente: "))
                 endereco = input("Digite o novo endereço do cliente: ")
                 cliente.nome = nome
                 cliente.cnpj = cnpj
@@ -130,7 +130,7 @@ class BancoDados:
         print("Cliente não encontrado.")
 
     def remover_cliente(self):
-        cpf_cnpj = int(input("Digite o CPF/CNPJ do cliente para remover: "))
+        cpf_cnpj = str(input("Digite o CPF/CNPJ do cliente para remover: "))
         for cliente in self.clientes:
             if isinstance(cliente, PessoaJuridica) and cliente.cnpj == cpf_cnpj:
                 self.clientes.remove(cliente)
@@ -143,7 +143,7 @@ class BancoDados:
         print("Cliente não encontrado.")
 
     def cadastrar_funcionario(self):
-        cpf = input("Digite o CPF do funcionário: ")
+        cpf = str(input("Digite o CPF do funcionário: "))
         nome = input("Digite o nome do funcionário: ")
         endereco = input("Digite o endereço do funcionário: ")
 
@@ -162,10 +162,10 @@ class BancoDados:
         print("===================")
 
     def alterar_funcionario(self):
-        cpf = int(input("Digite o CPF do funcionário para alterar: "))
+        cpf = str(input("Digite o CPF do funcionário para alterar: "))
         for funcionario in self.clientes:
             if isinstance(funcionario, Funcionario) and funcionario.cpf == cpf:
-                nome = input("Digite o novo nome do Funcionário: ")
+                nome = str(input("Digite o novo nome do Funcionário: "))
                 cpf = input("Digite o novo CPF do Funcionário: ")
                 endereco = input("Digite o novo endereço do funcionário: ")
                 funcionario.nome = nome
@@ -176,7 +176,7 @@ class BancoDados:
         print("Funcionário não encontrado.")
 
     def remover_funcionario(self):
-        cpf = int(input("Digite o CPF do funcionário para remover: "))
+        cpf = str(input("Digite o CPF do funcionário para remover: "))
         for funcionario in self.clientes:
             if isinstance(funcionario, Funcionario) and funcionario.cpf == cpf:
                 self.clientes.remove(funcionario)

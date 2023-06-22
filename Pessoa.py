@@ -28,7 +28,7 @@ class Pessoa:
 class PessoaFisica(Pessoa):
     def __init__(self, nome, cpf, endereco):
         self.cpf = cpf
-        self.super().__init__(nome, endereco)
+        super().__init__(nome, endereco)
 
     def get_cpf(self):
         return self.cpf
@@ -52,7 +52,7 @@ class PessoaFisica(Pessoa):
 class PessoaJuridica(Pessoa):
     def __init__(self, nome, cnpj, endereco):
         self.cnpj = cnpj
-        self.super().__init__(nome, endereco)
+        super().__init__(nome, endereco)
 
     def get_cnpj(self):
         return self.cnpj

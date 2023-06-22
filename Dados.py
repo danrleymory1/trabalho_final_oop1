@@ -17,15 +17,17 @@ class Dados:
         self.produtos.append(produto)
         return True
 
-    def inserir_produto(self):
+    def cadastrar_produto(self):
         produto = Produto.criar()
 
         res = self.inserir_produto(produto)
 
         if res:
-            print("Produto cadastrado com sucesso.")
+            print("\n=================\nProduto cadastrado com sucesso.")
         else:
-            print("Produto já cadastrado no sistema.")
+            print("\n=================\nProduto já cadastrado no sistema.")
+
+        input("\nAperte qualquer tecla para continuar.")
 
     def alterar_produto(self):
         codigo = int(input("Digite o código do produto que deseja alterar: "))

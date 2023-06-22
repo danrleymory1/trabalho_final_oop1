@@ -50,21 +50,21 @@ class Produto:
             Produto.codigo_sequencial -= 1
 
         produto.set_nome(input("Digite o nome do produto: "))
-        while produto.get_nome() == None:
+        while produto.get_nome() == None or len(produto.get_nome()) == 0:
             produto.set_nome(
                 input("Nome inválido. Digite novamente o nome do produto: ")
             )
 
-        produto.set_preco(float(input("Digite o preço do produto: ")))
+        produto.set_preco(input("Digite o preço do produto: "))
         while produto.get_preco() == None:
             produto.set_preco(
-                float(input("Preço inválido. Digite novamente o preço do produto: "))
+                input("Preço inválido. Digite novamente o preço do produto: ")
             )
 
-        produto.set_quantidade(int(input("Digite o preço do produto: ")))
+        produto.set_quantidade(input("Digite a quantidade do produto: "))
         while produto.get_quantidade() == None:
             produto.set_quantidade(
-                int(input("Preço inválido. Digite novamente o preço do produto: "))
+                input("Quantidade inválida. Digite novamente a quantidade do produto: ")
             )
 
         return produto

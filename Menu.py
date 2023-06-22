@@ -1,16 +1,18 @@
-def exibir_menu_principal():
-    print("---- Menu Principal ----")
-    print("1 - Estoque")
-    print("2 - Clientes")
-    print("3 - Funcionários")
-    print("4 - Vendas")
-    print("5 - Relatório de Vendas")
-    print("0 - Sair")
-
-
 class Menu:
     def __init__(self, banco_dados):
         self.banco_dados = banco_dados
+
+    def limpar_tela(self):
+        print("\033c\033[3J", end="")
+
+    def exibir_menu_principal(self):
+        print("---- Menu Principal ----")
+        print("1 - Estoque")
+        print("2 - Clientes")
+        print("3 - Funcionários")
+        print("4 - Vendas")
+        print("5 - Relatório de Vendas")
+        print("0 - Sair")
 
     def exibir_menu_estoque(self):
         print("---- Menu Estoque ----")
@@ -44,7 +46,8 @@ class Menu:
 
     def executar(self):
         while True:
-            exibir_menu_principal()
+            self.limpar_tela()
+            self.exibir_menu_principal()
             opcao = input("Digite a opção desejada: ")
 
             if opcao == "1":
@@ -64,6 +67,7 @@ class Menu:
 
     def executar_menu_estoque(self):
         while True:
+            self.limpar_tela()
             self.exibir_menu_estoque()
             opcao = input("Digite a opção desejada: ")
 
@@ -84,6 +88,7 @@ class Menu:
 
     def executar_menu_clientes(self):
         while True:
+            self.limpar_tela()
             self.exibir_menu_clientes()
             opcao = input("Digite a opção desejada: ")
 
@@ -102,6 +107,7 @@ class Menu:
 
     def executar_menu_funcionarios(self):
         while True:
+            self.limpar_tela()
             self.exibir_menu_funcionarios()
             opcao = input("Digite a opção desejada: ")
 
@@ -120,6 +126,7 @@ class Menu:
 
     def executar_menu_vendas(self):
         while True:
+            self.limpar_tela()
             self.exibir_menu_vendas()
             opcao = input("Digite a opção desejada: ")
 
@@ -129,4 +136,3 @@ class Menu:
                 break
             else:
                 print("Opção inválida.")
-

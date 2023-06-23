@@ -1,4 +1,5 @@
 from Utilidades import print_e_esperar
+from Compra import NotaFiscal
 
 
 class RepositorioVendas:
@@ -51,7 +52,7 @@ class RepositorioVendas:
             if input("Deseja adicionar mais produtos? (S/N)").upper() != "S":
                 break
 
-        valor_total = self.calcular_valor_total(produtos_venda)
+        valor_total = NotaFiscal.calcular_valor_total(produtos_venda)
 
         if isinstance(cliente, PessoaJuridica):
             valor_total = cliente.aplicar_desconto(valor_total)
@@ -69,12 +70,6 @@ class RepositorioVendas:
 
         print("\n=================\nVenda realizada com sucesso.")
         nota_fiscal.exibir_dados()
-
-    def calcular_valor_total(self, produtos):
-        valor_total = 0.0
-        for produto, quantidade in produtos.items():
-            valor_total += produto.preco * quantidade
-        return valor_total
 
     def exibir_total_vendas(self):
         total_vendas = sum(nota_fiscal.valor_total for nota_fiscal in self.vendas)

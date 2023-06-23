@@ -27,3 +27,9 @@ class NotaFiscal:
                 f"Nome: {produto.nome}, Quantidade: {quantidade}, Preço: R$ {produto.preco:.2f}"
             )
         print(f"Valor Total: R$ {self.valor_total:.2f}")
+
+    def calcular_valor_total(produtos):
+        valor_total = 0.0
+        for produto, quantidade in produtos.items():
+            valor_total += produto.preco * quantidade
+        return valor_total

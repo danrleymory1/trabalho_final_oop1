@@ -59,7 +59,7 @@ class Menu:
             elif opcao == "4":
                 self.executar_menu_vendas()
             elif opcao == "5":
-                self.banco_dados.exibir_total_vendas()
+                self.banco_dados.vendas.exibir_total_vendas()
             elif opcao == "0":
                 break
             else:
@@ -72,16 +72,16 @@ class Menu:
             opcao = input("Digite a opção desejada: ")
 
             if opcao == "1":
-                self.banco_dados.cadastrar_produto()
+                self.banco_dados.produtos.cadastrar_produto()
             elif opcao == "2":
-                self.banco_dados.alterar_produto()
+                self.banco_dados.produtos.alterar_produto()
             elif opcao == "3":
-                self.banco_dados.adicionar_ao_estoque()
+                self.banco_dados.produtos.alterar_estoque()
             elif opcao == "4":
-                self.banco_dados.remover_produto()
+                self.banco_dados.produtos.remover_produto()
             elif opcao == "5":
                 self.limpar_tela()
-                self.banco_dados.exibir_estoque()
+                self.banco_dados.produtos.exibir_estoque()
                 input("Pressione qualquer tecla para continuar.")
             elif opcao == "0":
                 break
@@ -95,13 +95,13 @@ class Menu:
             opcao = input("Digite a opção desejada: ")
 
             if opcao == "1":
-                self.banco_dados.exibir_clientes()
+                self.banco_dados.pessoas.exibir_clientes()
             elif opcao == "2":
-                self.banco_dados.cadastrar_cliente()
+                self.banco_dados.pessoas.cadastrar_cliente()
             elif opcao == "3":
-                self.banco_dados.alterar_cliente()
+                self.banco_dados.pessoas.alterar_cliente()
             elif opcao == "4":
-                self.banco_dados.remover_cliente()
+                self.banco_dados.pessoas.remover_cliente()
             elif opcao == "0":
                 break
             else:
@@ -114,13 +114,13 @@ class Menu:
             opcao = input("Digite a opção desejada: ")
 
             if opcao == "1":
-                self.banco_dados.exibir_funcionarios()
+                self.banco_dados.pessoas.exibir_funcionarios()
             elif opcao == "2":
-                self.banco_dados.cadastrar_funcionario()
+                self.banco_dados.pessoas.cadastrar_funcionario()
             elif opcao == "3":
-                self.banco_dados.alterar_funcionario()
+                self.banco_dados.pessoas.alterar_funcionario()
             elif opcao == "4":
-                self.banco_dados.remover_funcionario()
+                self.banco_dados.pessoas.remover_funcionario()
             elif opcao == "0":
                 break
             else:

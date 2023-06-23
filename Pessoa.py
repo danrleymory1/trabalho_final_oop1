@@ -40,7 +40,7 @@ class PessoaFisica(Pessoa):
             return False
 
     def criar():
-        pessoa = PessoaJuridica(None, None, None)
+        pessoa = PessoaFisica(None, None, None)
 
         pessoa.set_nome(input("Digite o nome a ser cadastrado: "))
         while pessoa.get_nome() == None or len(pessoa.get_nome()) == 0:
@@ -55,6 +55,9 @@ class PessoaFisica(Pessoa):
             pessoa.set_endereco(input("Endereço inválido. Digite novamente: "))
 
         return pessoa
+
+    def get_id(self):
+        return self.cpf
 
 
 class PessoaJuridica(Pessoa):
@@ -92,6 +95,9 @@ class PessoaJuridica(Pessoa):
             pessoa.set_endereco(input("Endereço inválido. Digite novamente: "))
 
         return pessoa
+
+    def get_id(self):
+        return self.cnpj
 
 
 class Funcionario(PessoaFisica):

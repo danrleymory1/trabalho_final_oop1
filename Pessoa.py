@@ -39,19 +39,19 @@ class PessoaFisica(Pessoa):
         else:
             return False
 
-    def criar():
+    def criar(self):
         pessoa = PessoaFisica(None, None, None)
 
         pessoa.set_nome(input("Digite o nome a ser cadastrado: "))
-        while pessoa.get_nome() == None or len(pessoa.get_nome()) == 0:
+        while pessoa.get_nome() is None or len(pessoa.get_nome()) == 0:
             pessoa.set_nome(input("Nome inválido. Digite novamente: "))
 
         pessoa.set_cpf(input("Digite o CPF: "))
-        while pessoa.get_cpf() == None:
+        while pessoa.get_cpf() is None:
             pessoa.set_cpf(input("CPF inválido. Digite novamente o CPF: "))
 
         pessoa.set_endereco(input("Digite o endereço: "))
-        while pessoa.get_endereco() == None or len(pessoa.get_endereco()) == 0:
+        while pessoa.get_endereco() is None or len(pessoa.get_endereco()) == 0:
             pessoa.set_endereco(input("Endereço inválido. Digite novamente: "))
 
         return pessoa
@@ -79,7 +79,7 @@ class PessoaJuridica(Pessoa):
         valor_com_desconto = valor_total - desconto
         return valor_com_desconto
 
-    def criar():
+    def criar(self):
         pessoa = PessoaJuridica(None, None, None)
 
         pessoa.set_nome(input("Digite o nome a ser cadastrado: "))

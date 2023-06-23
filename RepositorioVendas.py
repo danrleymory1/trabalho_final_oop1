@@ -17,7 +17,7 @@ class RepositorioVendas:
 
         cliente = self.repositorio_pessoas.buscar_cliente(cpf_cnpj)
 
-        if cliente == None:
+        if cliente is None:
             print_e_esperar("Cliente não encontrado.")
             return
 
@@ -38,7 +38,7 @@ class RepositorioVendas:
 
             produto = self.repositorio_produtos.buscar_produto(codigo)
 
-            if produto == None:
+            if produto is None:
                 print_e_esperar("Produto não encontrado.")
                 continue
 

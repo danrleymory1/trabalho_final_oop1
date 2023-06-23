@@ -39,7 +39,7 @@ class PessoaFisica(Pessoa):
         else:
             return False
 
-    def criar(self):
+    def criar():
         pessoa = PessoaFisica(None, None, None)
 
         pessoa.set_nome(input("Digite o nome a ser cadastrado: "))
@@ -79,7 +79,7 @@ class PessoaJuridica(Pessoa):
         valor_com_desconto = valor_total - desconto
         return valor_com_desconto
 
-    def criar(self):
+    def criar():
         pessoa = PessoaJuridica(None, None, None)
 
         pessoa.set_nome(input("Digite o nome a ser cadastrado: "))

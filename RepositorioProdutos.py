@@ -43,18 +43,24 @@ class RepositorioProdutos:
     def alterar_estoque(self):
         codigo = input("Digite o código do produto que deseja alterar no estoque: ")
         while not codigo.isnumeric():
-            codigo = input("Código inválido. Digite o código novamente")
+            codigo = input(
+                'Código inválido. Digite "SAIR" para sair.\nDigite o código novamente'
+            )
+            if codigo == "SAIR":
+                return
 
         codigo = int(codigo)
 
         for produto in self.produtos:
             if produto.codigo == codigo:
-                quantidade = input("Digite a quantidade a ser do produto em estoque: ")
+                quantidade = input("Digite a quantidade do produto em estoque: ")
 
                 while not quantidade.isnumeric():
                     quantidade = input(
-                        "Valor inválido. Digite novamente a quantidade do produto em estoque: "
+                        'Valor inválido. Digite "SAIR" para sair.\nDigite novamente a quantidade do produto em estoque: '
                     )
+                    if quantidade == "SAIR":
+                        return
 
                 produto.set_quantidade(int(quantidade))
 
@@ -70,7 +76,16 @@ class RepositorioProdutos:
             print()  # Linha em branco para separar os produtos
 
     def remover_produto(self):
-        codigo = int(input("Digite o código do produto que deseja remover: "))
+        codigo = input("Digite o código do produto que deseja remover: ")
+
+        while not codigo.isnumeric():
+            codigo = input(
+                'Código inválido. Digite "SAIR" para sair.\nDigite o código novamente'
+            )
+            if codigo == "SAIR":
+                return
+
+        codigo = int(codigo)
 
         for produto in self.produtos:
             if produto.codigo == codigo:

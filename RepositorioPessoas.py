@@ -26,6 +26,7 @@ class RepositorioPessoas:
                 print_e_esperar(
                     "\n=================\nCliente já está cadastrado no sistema."
                 )
+                return
 
             print_e_esperar("\n=================\nCliente cadastrado com sucesso.")
         elif tipo == "2":
@@ -36,6 +37,7 @@ class RepositorioPessoas:
                 print_e_esperar(
                     "\n=================\nCliente já está cadastrado no sistema."
                 )
+                return
 
             print_e_esperar("\n=================\nCliente cadastrado com sucesso.")
 
@@ -61,8 +63,10 @@ class RepositorioPessoas:
 
         while not (validar_cnpj(cpf_cnpj) or validar_cpf(cpf_cnpj)):
             cpf_cnpj = input(
-                "CPF/CNPJ inválido.\nDigite o CPF/CNPJ do cliente para alterar: "
+                'CPF/CNPJ inválido. Digite "SAIR" para sair.\nDigite o CPF/CNPJ do cliente para alterar: '
             )
+            if cpf_cnpj == "SAIR":
+                return
 
         if validar_cpf(cpf_cnpj):
             cliente = PessoaFisica.criar()
@@ -88,8 +92,10 @@ class RepositorioPessoas:
 
         while not (validar_cnpj(cpf_cnpj) or validar_cpf(cpf_cnpj)):
             cpf_cnpj = input(
-                "CPF/CNPJ inválido.\nDigite o CPF/CNPJ do cliente para remover: "
+                'CPF/CNPJ inválido. Digite "SAIR" para sair.\nDigite o CPF/CNPJ do cliente para remover: '
             )
+            if cpf_cnpj == "SAIR":
+                return
 
         for p in self.clientes:
             if p.get_id() == cpf_cnpj:
@@ -123,15 +129,17 @@ class RepositorioPessoas:
         print("==== Funcionários ====")
         for f in self.funcionarios:
             print(f"Nome: {f.get_nome()} - CPF: {f.get_cpf() or 'Não informado'}")
-        print("===================")
+        print_e_esperar("===================")
 
     def alterar_funcionario(self):
         cpf = input("Digite o CPF do funcionário para alterar: ")
 
         while not validar_cpf(cpf):
             cpf = input(
-                "CPF inválido.\nDigite novamente o CPF do funcionário para alterar: "
+                'CPF inválido. Digite "SAIR" para sair.\nDigite novamente o CPF do funcionário para alterar: '
             )
+            if cpf == "SAIR":
+                return
 
         for f in self.funcionarios:
             if f.get_cpf() == cpf:
@@ -143,28 +151,24 @@ class RepositorioPessoas:
                     "\n=================\nFuncionário alterado com sucesso."
                 )
                 return
-            print_e_esperar(
-                "\n=================\nFuncionário não encontrado no sistema."
-            )
+        print_e_esperar("\n=================\nFuncionário não encontrado no sistema.")
 
     def remover_funcionario(self):
         cpf = input("Digite o CPF do funcionário para remover: ")
 
         while not validar_cpf(cpf):
             cpf = input(
-                "CPF inválido.\nDigite novamente o CPF do funcionário para remover: "
+                'CPF inválido. Digite "SAIR" para sair.\nDigite novamente o CPF do funcionário para remover: '
             )
+            if cpf == "SAIR":
+                return
 
         for f in self.funcionarios:
             if f.get_cpf() == cpf:
                 self.funcionarios.remove(f)
-                print_e_esperar(
-                    "\n=================\nFuncionário não encontrado no sistema."
-                )
+                print_e_esperar("\n=================\nFuncionário removido do sistema.")
                 return
-            print_e_esperar(
-                "\n=================\nFuncionário não encontrado no sistema."
-            )
+        print_e_esperar("\n=================\nFuncionário não encontrado no sistema.")
 
     def buscar_cliente(self, cpf_cnpj):
         for cliente in self.clientes:
@@ -172,4 +176,6 @@ class RepositorioPessoas:
                 return cliente
             elif isinstance(cliente, PessoaFisica) and cliente.cpf == cpf_cnpj:
                 return cliente
-        return None
+        for funcionario in self.funcionarios:
+            if funcionario.get_cpf() == cpf_cnpj:
+                return funcionario

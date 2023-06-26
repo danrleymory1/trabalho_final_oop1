@@ -1,3 +1,5 @@
+from bradocs4py import validar_cnpj, validar_cpf
+from Pessoa import PessoaFisica, PessoaJuridica, Funcionario
 from Utilidades import print_e_esperar
 from Compra import NotaFiscal
 
@@ -11,10 +13,16 @@ class RepositorioVendas:
     def realizar_venda(self):
         cpf_cnpj = input("Digite o CPF/CNPJ do cliente: ")
 
-        while not validar_cnpj(cpf_cnpj) or validar_cpf(cpf_cnpj):
+        print(validar_cnpj(cpf_cnpj))
+        print(validar_cpf(cpf_cnpj))
+        print(validar_cnpj(cpf_cnpj) or validar_cpf(cpf_cnpj))
+
+        while not (validar_cnpj(cpf_cnpj) or validar_cpf(cpf_cnpj)):
             cpf_cnpj = input(
-                "CPF/CNPJ inválido.\nDigite novamente o CPF/CNPJ do cliente: "
+                'CPF/CNPJ inválido. Digite "SAIR" para sair.\nDigite novamente o CPF/CNPJ do cliente: '
             )
+            if cpf_cnpj == "SAIR":
+                return
 
         cliente = self.repositorio_pessoas.buscar_cliente(cpf_cnpj)
 
@@ -27,13 +35,21 @@ class RepositorioVendas:
         while True:
             codigo = input("Digite o código do produto: ")
             while not codigo.isnumeric():
-                input("Código inválido.\nDigite o código novamente: ")
+                input(
+                    'Código inválido. Digite "SAIR" para sair.\nDigite o código novamente: '
+                )
+                if quantidade == "SAIR":
+                    return
 
             codigo = int(codigo)
 
             quantidade = input("Digite a quantidade do produto: ")
             while not quantidade.isnumeric():
-                input("Quantidade inválida.\nDigite a quantidade novamente: ")
+                quantidade = input(
+                    'Quantidade inválida. Digite "SAIR" para sair.\nDigite a quantidade novamente: '
+                )
+                if quantidade == "SAIR":
+                    return
 
             quantidade = int(quantidade)
 
@@ -66,12 +82,14 @@ class RepositorioVendas:
             valor_total,
         )
 
+        nota_fiscal.exibir_dados()
+
         self.vendas.append(nota_fiscal)
 
-        print("\n=================\nVenda realizada com sucesso.")
+        print_e_esperar("\n=================\nVenda realizada com sucesso.")
         nota_fiscal.exibir_dados()
 
     def exibir_total_vendas(self):
         total_vendas = sum(nota_fiscal.valor_total for nota_fiscal in self.vendas)
         print(f"Numero de vendas realizadas: {len(self.vendas)}")
-        print(f"Total de Vendas: R$ {total_vendas:.2f}")
+        print_e_esperar(f"Total de Vendas: R$ {total_vendas:.2f}")

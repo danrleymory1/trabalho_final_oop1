@@ -133,7 +133,7 @@ class Menu:
             opcao = input("Digite a opção desejada: ")
 
             if opcao == "1":
-                self.banco_dados.realizar_venda()
+                self.banco_dados.vendas.realizar_venda()
             elif opcao == "0":
                 break
             else:

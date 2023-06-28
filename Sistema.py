@@ -1,22 +1,3 @@
-"""
-Falta corrigir o problema do CPF/CNPJ em que se inicia com '0', não consegue depois fazer a referencia
-Falta adicionar tratamento de erros para o programa não dar erro durante a execução de int em str, etc
-Melhorar o Menu para limpar a tela
-Também vai faltar mais itens iniciais para vender.
-Verificar se realmente o programa utiliza os conceitos que a professora trabalhou em sala
-Além disso(duvida), não entendi o porque de aparecer para função dever ser tipo 'static'
-Também verificar se é preciso o uso de set e get, pois não utilizei no programa
-Depois das correções, eu faço o diagrama, só realmente não sei se utilizei: 
-Agregação, Composição, Herança e/ou polimorfismo
-
-Mas verifica aí, acredito que tem como deixar mais limpo o código kkk
-""" ""
-# Menu Estoque Ok
-# Menu Clientes Ok
-# Menu Funcionário Ok
-# Menu Vendas Ok
-# Menu Relatório Ok
-
 from Dados import Dados
 from Menu import Menu
 from Produto import Produto

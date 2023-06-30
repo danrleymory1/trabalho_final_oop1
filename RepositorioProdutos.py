@@ -52,7 +52,7 @@ class RepositorioProdutos:
         codigo = int(codigo)
 
         for produto in self.produtos:
-            if produto.codigo == codigo:
+            if produto.codigo == produto.get_codigo():
                 quantidade = input("Digite a quantidade do produto em estoque: ")
 
                 while not quantidade.isnumeric():

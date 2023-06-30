@@ -31,11 +31,7 @@ class Produto:
         return self.quantidade
 
     def set_quantidade(self, nova_quantidade):
-        try:
-            nova_quantidade = int(nova_quantidade)
-            self.quantidade = nova_quantidade
-        except:
-            return False
+        self.quantidade = nova_quantidade
 
     def exibir_informacoes(self):
         print(f"Código: {self.codigo}")

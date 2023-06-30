@@ -53,10 +53,34 @@ class RepositorioPessoas:
         print("==== Clientes ====")
         for p in self.clientes:
             if isinstance(p, PessoaFisica):
-                print(f"Nome: {p.get_nome()} - CPF: {p.get_cpf() or 'Não informado'}")
+                print(f"Nome: {p.get_nome()} - CPF: {p.get_cpf() or 'Não informado'} - Endereço: {p.get_endereco()}")
             else:
-                print(f"Nome: {p.get_nome()} - CNPJ: {p.get_cnpj() or 'Não informado'}")
+                print(f"Nome: {p.get_nome()} - CNPJ: {p.get_cnpj() or 'Não informado'} - Endereço: {p.get_endereco()}")
         print_e_esperar("===================")
+
+    def consultar_cliente(self):
+        cpf_cnpj = input("Digite o CPF/CNPJ do cliente para consultar: ")
+
+        while not (validar_cnpj(cpf_cnpj) or validar_cpf(cpf_cnpj)):
+            cpf_cnpj = input(
+                'CPF/CNPJ inválido. Digite "SAIR" para sair.\nDigite o CPF/CNPJ do cliente para consultar: '
+            )
+            if cpf_cnpj == "sair":
+                return
+        print("==== Cliente ====")
+        for cliente in self.clientes:
+            if isinstance(cliente, PessoaFisica):
+                if cliente.get_id() == cpf_cnpj:
+                    print(f"Nome: {cliente.get_nome()}\nCPF: {cliente.get_cpf() or 'Não informado'}\nEndereço: {cliente.get_endereco()}")
+                    print_e_esperar("===================")
+                    return
+            elif isinstance(cliente, PessoaJuridica):
+                if cliente.get_id() == cpf_cnpj:
+                    print(f"Nome: {cliente.get_nome()}\nCNPJ: {cliente.get_cnpj() or 'Não informado'}\nEndereço: {cliente.get_endereco()}")
+                    print_e_esperar("===================")
+                    return
+        print_e_esperar("===================\nCliente não cadastrado no sistema.")
+
 
     def alterar_cliente(self):
         cpf_cnpj = input("Digite o CPF/CNPJ do cliente para alterar: ")
@@ -128,8 +152,26 @@ class RepositorioPessoas:
     def exibir_funcionarios(self):
         print("==== Funcionários ====")
         for f in self.funcionarios:
-            print(f"Nome: {f.get_nome()} - CPF: {f.get_cpf() or 'Não informado'}")
+            print(f"Nome: {f.get_nome()} - CPF: {f.get_cpf() or 'Não informado'} - Endereço: {f.get_endereco()}")
         print_e_esperar("===================")
+
+    def consultar_funcionario(self):
+        cpf = input("Digite o CPF do funcionário para consultar: ")
+
+        while not validar_cpf(cpf):
+            cpf = input(
+                'CPF/ inválido. Digite "SAIR" para sair.\nDigite o CPF do funcionário para consultar: '
+            )
+            if cpf == "sair":
+                return
+        print("==== Funcionário ====")
+        for funcionario in self.funcionarios:
+            if funcionario.get_cpf() == cpf:
+                print(f"Nome: {funcionario.get_nome()}\nCPF: {funcionario.get_cpf() or 'Não informado'}\nEndereço: {funcionario.get_endereco()}")
+                print_e_esperar("===================")
+                return
+        print_e_esperar("===================\nFuncionário não encontrado no sistema.")
+
 
     def alterar_funcionario(self):
         cpf = input("Digite o CPF do funcionário para alterar: ")

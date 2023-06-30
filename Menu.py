@@ -26,17 +26,19 @@ class Menu:
     def exibir_menu_clientes(self):
         print("---- Menu Clientes ----")
         print("1 - Exibir Clientes")
-        print("2 - Cadastrar Cliente")
-        print("3 - Alterar Cliente")
-        print("4 - Excluir Cliente")
+        print("2 - Consultar Cliente")
+        print("3 - Cadastrar Cliente")
+        print("4 - Alterar Cliente")
+        print("5 - Excluir Cliente")
         print("0 - Voltar")
 
     def exibir_menu_funcionarios(self):
         print("---- Menu Funcionários ----")
         print("1 - Exibir Funcionários")
-        print("2 - Cadastrar Funcionário")
-        print("3 - Alterar Funcionário")
-        print("4 - Excluir Funcionário")
+        print("2 - Consultar funcionário")
+        print("3 - Cadastrar Funcionário")
+        print("4 - Alterar Funcionário")
+        print("5 - Excluir Funcionário")
         print("0 - Voltar")
 
     def exibir_menu_vendas(self):
@@ -97,10 +99,12 @@ class Menu:
             if opcao == "1":
                 self.banco_dados.pessoas.exibir_clientes()
             elif opcao == "2":
-                self.banco_dados.pessoas.cadastrar_cliente()
+                self.banco_dados.pessoas.consultar_cliente()
             elif opcao == "3":
-                self.banco_dados.pessoas.alterar_cliente()
+                self.banco_dados.pessoas.cadastrar_cliente()
             elif opcao == "4":
+                self.banco_dados.pessoas.alterar_cliente()
+            elif opcao == "5":
                 self.banco_dados.pessoas.remover_cliente()
             elif opcao == "0":
                 break
@@ -116,10 +120,12 @@ class Menu:
             if opcao == "1":
                 self.banco_dados.pessoas.exibir_funcionarios()
             elif opcao == "2":
-                self.banco_dados.pessoas.cadastrar_funcionario()
+                self.banco_dados.pessoas.consultar_funcionario()
             elif opcao == "3":
-                self.banco_dados.pessoas.alterar_funcionario()
+                self.banco_dados.pessoas.cadastrar_funcionario()
             elif opcao == "4":
+                self.banco_dados.pessoas.alterar_funcionario()
+            elif opcao == "5":
                 self.banco_dados.pessoas.remover_funcionario()
             elif opcao == "0":
                 break

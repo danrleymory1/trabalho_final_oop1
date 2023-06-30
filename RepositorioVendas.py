@@ -13,10 +13,6 @@ class RepositorioVendas:
     def realizar_venda(self):
         cpf_cnpj = input("Digite o CPF/CNPJ do cliente: ")
 
-        print(validar_cnpj(cpf_cnpj))
-        print(validar_cpf(cpf_cnpj))
-        print(validar_cnpj(cpf_cnpj) or validar_cpf(cpf_cnpj))
-
         while not (validar_cnpj(cpf_cnpj) or validar_cpf(cpf_cnpj)):
             cpf_cnpj = input(
                 'CPF/CNPJ inválido. Digite "SAIR" para sair.\nDigite novamente o CPF/CNPJ do cliente: '
@@ -40,30 +36,22 @@ class RepositorioVendas:
                 )
                 if quantidade == "SAIR":
                     return
-
             codigo = int(codigo)
-
-            quantidade = input("Digite a quantidade do produto: ")
-            while not quantidade.isnumeric():
-                quantidade = input(
-                    'Quantidade inválida. Digite "SAIR" para sair.\nDigite a quantidade novamente: '
-                )
-                if quantidade == "SAIR":
-                    return
-
-            quantidade = int(quantidade)
-
             produto = self.repositorio_produtos.buscar_produto(codigo)
 
-            if produto is None:
-                print_e_esperar("Produto não encontrado.")
+            if produto == None:
+                print("Produto não encontrado.")
                 continue
 
-            if quantidade > produto.quantidade:
-                print_e_esperar("Quantidade em estoque insuficiente.")
-                continue
+            quantidade = int(input("Digite a quantidade desejada: "))
+            estoque_atual = produto.get_quantidade()
 
+            if quantidade > estoque_atual:
+                print("Quantidade insuficiente em estoque.")
+                continue
             produtos_venda[produto] = quantidade
+            produto.set_quantidade(estoque_atual - quantidade)
+
 
             if input("Deseja adicionar mais produtos? (S/N)").upper() != "S":
                 break
